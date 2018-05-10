@@ -1,7 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { routes } = require('../config.js')
-const {host, port} = require('../config.js')
 const appPath = path.resolve(__dirname, '../app/')
 const webpackConfig = {
     entry: {},
@@ -9,8 +8,6 @@ const webpackConfig = {
         path: path.resolve(__dirname, '../build'),
         filename: '[name].[hash].js'
     },
-    devtool: 'source-map',
-    mode: 'development',
     module: {
     	rules: [
     		{
@@ -40,11 +37,6 @@ const webpackConfig = {
     			]
     		}
     	]
-    },
-    devServer: {
-    	host,
-    	port,
-    	progress: true
     },
     plugins: []
 }
