@@ -1,0 +1,29 @@
+{
+  "name": "multipage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --config ./dev-conf/webpack.dev.config --color --hot",
+    "bd": "webpack --config ./dev-conf/webpack.config --color",
+    "m": "node ./dev-conf/routes && npm run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^8.4.1",
+    "babel-preset-env": "^1.6.1",
+    "css-loader": "^0.28.11",
+    "html-webpack-plugin": "^3.2.0",
+    "postcss-loader": "^2.1.5",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.8.1",
+    "webpack-cli": "^2.1.3",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4"
+  }
+}

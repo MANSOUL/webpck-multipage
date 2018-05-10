@@ -1,0 +1,13 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	tap-highlight-color: rgba(0,0,0,0);
+}
+
+.helloWorld {
+	color: lightblue;
+	text-shadow: 0 0 2px rgba(0,0,0,.4);
+	display: flex;
+	justify-content: center;
+}
