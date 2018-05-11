@@ -1,8 +1,52 @@
+const path = require('path')
+const webpack = require('webpack')
 const merge = require('webpack-merge')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const common = require('./webpack.common')
-
+const {buildDirName} = require('../config')
 const webpackConfig = merge(common, {
-	mode: 'production'
+	mode: 'production',
+	optimization: {
+		minimizer: [
+			new UglifyJsPlugin({
+				cache: true,
+				parallel: true
+			}),
+			new OptimizeCssAssetsPlugin({})
+		]
+	},
+	module: {
+		rules: [
+			{
+                test: /\.css$/,
+                exclude: path.resolve(__dirname, '../node_modules'),
+                use: [
+                    { loader: MiniCssExtractPlugin.loader },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            importLoaders: 1,
+                            localIdentName: '[local]__[hash:base64:5]'
+                        }
+                    },
+                    { loader: 'postcss-loader' }
+                ]
+            }
+		]
+	},
+	plugins: [
+		new CleanWebpackPlugin(path.resolve(__dirname, '../', buildDirName), {
+			allowExternal: true
+		}),
+		new MiniCssExtractPlugin({
+            filename: '[name].[hash].css',
+            chunkFilename: '[id].[hash].css'
+        })
+	]
 })
 
 module.exports = webpackConfig

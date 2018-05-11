@@ -1,44 +1,28 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { routes } = require('../config.js')
+const { routes, buildDirName } = require('../config.js')
 const appPath = path.resolve(__dirname, '../app/')
 const webpackConfig = {
     entry: {},
     output: {
-        path: path.resolve(__dirname, '../build'),
+        path: path.resolve(__dirname, '../', buildDirName),
         filename: '[name].[hash].js'
     },
     module: {
-    	rules: [
-    		{
-    			test: /\.jsx?$/,
-    			include: [
-    				path.resolve(__dirname, '../app')
-    			],
-    			exclude: [
-    				path.resolve(__dirname, '../node_modules')
-    			],
-    			loader: 'babel-loader'
-    		},
-    		{
-    			test: /\.css$/,
-    			exclude: path.resolve(__dirname, '../node_modules'),
-    			use: [
-    				{loader: 'style-loader'},
-    				{
-    					loader: 'css-loader',
-    					options: {
-    						modules: true,
-    						importLoaders: 1,
-    						localIdentName: '[local]__[hash:base64:5]'
-    					}
-    				},
-    				{loader: 'postcss-loader'}
-    			]
-    		}
-    	]
+        rules: [{
+                test: /\.jsx?$/,
+                include: [
+                    path.resolve(__dirname, '../app')
+                ],
+                exclude: [
+                    path.resolve(__dirname, '../node_modules')
+                ],
+                use: 'babel-loader'
+            }
+        ]
     },
-    plugins: []
+    plugins: [
+    ]
 }
 
 routes.forEach(r => {
@@ -46,7 +30,7 @@ routes.forEach(r => {
     webpackConfig.entry[name] = path.resolve(appPath, `${name}/index.js`)
     webpackConfig.plugins.push(
         new HtmlWebpackPlugin({
-        	template: path.resolve(appPath, `${name}/index.html`),
+            template: path.resolve(appPath, `${name}/index.html`),
             filename: `${name}.html`,
             chunks: [name]
         })
