@@ -4,3 +4,5 @@ npm-debug.log
 log
 package-lock.json
 stats.json
+app/
+build/
