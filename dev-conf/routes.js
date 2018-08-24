@@ -9,7 +9,12 @@ const TEMPLATE_SRC = [
 	path.resolve(__dirname, './template/index.css')
 ]
 const fileExists = [false, false,false]
-
+console.log('app目录检查...')
+const appPath = path.resolve(__dirname, '../app')
+if (!fs.existsSync(appPath)) {
+	console.log('app目录不存在，准备创建')
+	fs.mkdirSync(appPath)
+}
 console.log('路由文件检查...')
 routes.forEach((route) => {
 	const {title, name} = route
