@@ -13,16 +13,11 @@
 ### babel-loader
 ----------
 babel执行分为三个阶段：解析-编译-写入，babel不借助插件时只解析代码，原样输出。babel只转换语法，不转换新引入的API。
-babel-preset-env：
-	将ES6+语法编译为ES5语法
-babel-preset-react:
-	处理React语法
-babel-preset-stage$:
-	处理提案中的新语法
-babel-polyfill
-	对不存在的API进行修补
-
-- plugin先与preset执行
+- babel-preset-env：将ES6+语法编译为ES5语法
+- babel-preset-react：处理React语法
+- babel-preset-stage$：处理提案中的新语法
+- babel-polyfill：对不存在的API进行修补
+- plugin 先于preset执行
 - plugins 先后顺序执行
 - preset 后先顺序执行
 
