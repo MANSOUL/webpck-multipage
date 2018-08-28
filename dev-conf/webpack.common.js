@@ -1,12 +1,13 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { routes, buildDirName } = require('../config.js')
+const { routes, buildDirName, publicPath } = require('../config.js')
 const appPath = path.resolve(__dirname, '../app/')
 const webpackConfig = {
     entry: {},
     output: {
         path: path.resolve(__dirname, '../', buildDirName),
-        filename: '[name].[hash].js'
+        filename: '[name].[hash].js',
+        publicPath
     },
     module: {
         rules: [{
