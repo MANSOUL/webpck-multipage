@@ -7,6 +7,7 @@ module.exports = {
 		name: 'list'
 	}],
 	buildDirName: 'build',
+	publicPath: '/',
 	host: 'localhost',
 	port: '8080',
 	proxy: {}
