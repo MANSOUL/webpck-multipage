@@ -16,7 +16,18 @@ const webpackConfig = merge(common, {
         parallel: true
       }),
       new OptimizeCssAssetsPlugin({})
-    ]
+    ],
+    splitChunks: {
+      cacheGroups: {
+        globals: {
+          test: /\.js$/,
+          minChunks: 1,
+          name: 'common',
+          priority: -20,
+          chunks: 'all'
+        }
+      }
+    }
   },
   module: {
     rules: [{
