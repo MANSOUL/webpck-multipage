@@ -8,7 +8,6 @@ const TEMPLATE_SRC = [
   path.resolve(__dirname, './template/index.js'),
   path.resolve(__dirname, './template/index.css')
 ]
-const fileExists = [false, false, false]
 console.log('app目录检查...')
 const appPath = path.resolve(__dirname, '../app')
 if (!fs.existsSync(appPath)) {
@@ -17,6 +16,7 @@ if (!fs.existsSync(appPath)) {
 }
 console.log('路由文件检查...')
 routes.forEach((route) => {
+  let fileExists = [false, false, false]
   const { title, name } = route
   const filePath = path.resolve(__dirname, '../app/' + name)
   const files = [
