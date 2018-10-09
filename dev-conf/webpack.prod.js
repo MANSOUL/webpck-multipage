@@ -21,7 +21,7 @@ const webpackConfig = merge(common, {
       cacheGroups: {
         globals: {
           test: /\.js$/,
-          minChunks: 1,
+          minChunks: 2,
           name: 'common',
           priority: -20,
           chunks: 'all'
